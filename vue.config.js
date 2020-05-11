@@ -1,6 +1,8 @@
 const path = require('path')
 const debug = process.env.NODE_ENV !== 'production'
-
+function resolve(dir){
+  return path.join(__dirname,dir)//path.join(__dirname)设置绝对路径
+}
 module.exports = {
   publicPath: '/', // 根域上下文目录
   outputDir: 'dist', // 构建输出目录
@@ -29,6 +31,7 @@ module.exports = {
   },
   chainWebpack: config => {
     // webpack链接API，用于生成和修改webapck配置，https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md
+    config.resolve.alias.set('@', resolve('./src'))
     if (debug) {
       // 本地开发配置
     } else {
@@ -50,8 +53,8 @@ module.exports = {
     hotOnly: false,
     // proxy: {
     //   // 配置跨域
-    //   '/api': {
-    //     target: 'https://localhost:5010/api/',
+    //   '/apis': {
+    //     target: 'https://localhost:80/api/',
     //     ws: true,
     //     changOrigin: true,
     //     pathRewrite: {

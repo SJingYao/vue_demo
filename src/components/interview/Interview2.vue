@@ -133,7 +133,8 @@ export default {
           /**
            * 截取删除当前项数据
            */
-          this.formLabelAlign.data = this.formLabelAlign.data.splice(
+          // this.formLabelAlign.data = 
+          this.formLabelAlign.data.splice(
             currentIndex,
             1
           )
@@ -153,7 +154,7 @@ export default {
        */
       let percentage = this.checkPercentage(isData)
       console.log(percentage)
-      if (percentage = 100) {
+      if (percentage == 100) {
         this.$refs['ruleForm'].validate(valid => {
           if (valid) {
             /**

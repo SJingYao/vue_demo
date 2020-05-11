@@ -4,36 +4,61 @@
     <div>
       <img alt="Vue logo" src="../assets/logo.png" />
     </div>
-    <el-button type="primary" @click="gotoParent()">转到指定的父组件</el-button>
-    <el-button type="primary" @click="gotoChild()">转到指定的子组件</el-button>
-    <el-button type="success" @click="gotoInterview(0)">转到面试题1</el-button>
-    <el-button type="success" @click="gotoInterview(1)">转到面试题2</el-button>
-    <!-- <router-link to="/home/interview1">面试题1</router-link>
-    <router-link to="/home/interview2">面试题2</router-link>-->
-    <!-- <router-view></router-view> -->
+    <div>
+      <el-button type="success" @click="gotoInterview(0)">转到面试题1</el-button>
+      <el-button type="success" @click="gotoInterview(1)">转到面试题2</el-button>
+      <el-button type="primary" plain @click="gotoTable()">转到表格Table</el-button>
+      <el-button type="success" @click="getImg()">点击下载文件</el-button>
+      <el-button type="primary" @click="gotoVuex()">转到VUEX Demo</el-button>
+    </div>
+    <div>
+      <img :src="imgSrc" alt="" />
+    </div>
   </div>
 </template>
 
 <script>
+import { getFileImg } from '../api/getData'
 export default {
   name: 'Home',
   components: {},
   data() {
-    return {}
+    return {
+      imgSrc: ''
+    }
   },
   mounted() {},
   methods: {
+    gotoVuex(){
+      this.$router.push('/VuexDemo')
+    },
+    async getImg() {
+      let res = await getFileImg()
+      var a = document.createElement('a')
+      // download属性必须写
+      // a.download = 'a.jpg'
+      // var href = URL.createObjectURL(res.data)
+      // a.href = href
+      // document.body.appendChild(a)
+      // a.click()
+      // document.body.removeChild(a)
+
+      // 如果需要回显可以写一下代码
+      var readFile = new FileReader()
+      readFile.readAsDataURL(res.data)
+      readFile.onload = (e) => {
+        console.log(e.target.result)
+        this.imgSrc = e.target.result
+      }
+    },
+    gotoTable() {
+      this.$router.push('/table')
+    },
     gotoInterview(isFlag) {
       isFlag == 0
         ? this.$router.push('/interview1')
         : this.$router.push('/interview2')
     },
-    gotoParent() {
-      this.$router.push('/parent')
-    },
-    gotoChild() {
-      this.$router.push('/child')
-    }
   },
   created() {}
 }

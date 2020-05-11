@@ -2,11 +2,10 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
-import Parent from '../views/is_components/Parents'
-import Child from '../views/is_components/Child'
-import Interview1 from '../views/interview/Interview1'
-import Interview2 from '../views/interview/Interview2'
-
+import Interview1 from '@/components/interview/Interview1'
+import Interview2 from '@/components/interview/Interview2'
+import Table from '@/components/table/Istable'
+// import VuexDemo from '@/components/is_components/VuexDemo'
 Vue.use(VueRouter)
 
 const routes = [
@@ -29,23 +28,13 @@ const routes = [
       children: [
         {
           path: 'interview1',
-          component: resolve => require(['../views/interview/Interview1'], resolve),
+          component: resolve => require(['@/components/interview/Interview1'], resolve),
         },
         {
           path: 'interview2',
-          component: resolve => require(['../views/interview/Interview2'], resolve),
+          component: resolve => require(['@/components/interview/Interview2'], resolve),
         },
       ]
-  },
-  {
-    path: '/parent',
-    name: 'Parent',
-    component: Parent
-  },
-  {
-    path: '/child',
-    name: 'Child',
-    component: Child
   },
   {
     path: '/interview1',
@@ -56,6 +45,16 @@ const routes = [
     path: '/interview2',
     name: 'Interview2',
     component: Interview2
+  },
+  {
+    path: '/table',
+    name: 'table',
+    component: Table
+  },
+  {
+    path: '/VuexDemo',
+    name: 'VuexDemo',
+    component: resolve => require(['@/components/is_components/VuexDemo'], resolve),
   },
   // {
   //   path: '/about',
@@ -69,7 +68,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: 'hash',
   base: process.env.BASE_URL,
   routes
 })
