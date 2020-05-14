@@ -15,30 +15,21 @@
 </template>
 
 <script>
-import Login from './views/Login.vue'
-
 export default {
   name: 'app',
-  components: {
-    Login
-  }
 }
 </script>
 
 <style>
-html,
-body {
-  overflow-x: hidden;
-}
 #app {
+  width: 100%;
+  height: 100%;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   font-size: 14px;
   color: #2c3e50;
-  /* margin-top: 60px; */
-  padding: 5px;
   box-sizing: border-box;
 }
 

@@ -31,6 +31,7 @@
               v-model="loginRuleForm.ispsw"
               name="password"
               placeholder="请输入密码"
+              show-password
               @keyup.enter.native="logins()"
             ></el-input>
           </el-form-item>
@@ -47,7 +48,7 @@
 </template>
 
 <script>
-import http from '../api/api'
+import http from '@/api/api'
 
 export default {
   data () {
@@ -83,7 +84,8 @@ export default {
           // })
           let { data: data } = await this.axios.post('/logins', requestData)
           if (data.code === 200) {
-            this.$message.success('欢迎回来')
+            this.$message.success('欢迎回来' + data.data.admin_nickname)
+            sessionStorage.setItem('loginName', data.data.admin_nickname)
             sessionStorage.setItem('authorization-token', data.token)
             this.$router.push('/home')
           } else {

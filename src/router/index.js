@@ -1,11 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import Login from '../views/Login.vue'
-import Interview1 from '@/components/interview/Interview1'
-import Interview2 from '@/components/interview/Interview2'
-import Table from '@/components/table/Istable'
-// import VuexDemo from '@/components/is_components/VuexDemo'
+import progress from 'nprogress' // 进度条包
+import 'nprogress/nprogress.css' // 样式文件
 Vue.use(VueRouter)
 
 const routes = [
@@ -13,48 +9,52 @@ const routes = [
   {
     path: '*',
     name: '',
-    redirect: '/login'
+    redirect: '/login',
+    hidden: true
   },
   {
     path: '/login',
-    name: 'Login',
-    component: Login
+    name: '登录',
+    component: resolve => require(['@/views/Login/Login.vue'], resolve),
+    hidden: true
+  },
+  {
+    path: '/', redirect: '/homePage'
   },
   {
     path: '/home',
-    name: 'Home',
-    // component: Home,
-    component: resolve => require(['../views/Home.vue'], resolve),
-      children: [
-        {
-          path: 'interview1',
-          component: resolve => require(['@/components/interview/Interview1'], resolve),
-        },
-        {
-          path: 'interview2',
-          component: resolve => require(['@/components/interview/Interview2'], resolve),
-        },
-      ]
-  },
-  {
-    path: '/interview1',
-    name: 'Interview1',
-    component: Interview1
-  },
-  {
-    path: '/interview2',
-    name: 'Interview2',
-    component: Interview2
-  },
-  {
-    path: '/table',
-    name: 'table',
-    component: Table
-  },
-  {
-    path: '/VuexDemo',
-    name: 'VuexDemo',
-    component: resolve => require(['@/components/is_components/VuexDemo'], resolve),
+    // 这里加了name会有警告,是因为给这个路由设置的有默认路由
+    /**
+     * [vue-router] Named Route '首页' has a default child route. When navigating to this named route (:to="{name: '首页'"), the default child route will not be rendered. Remove the name from this route and use the name of the default child route for named links instead.
+     */
+    // name: '首页',
+    component: resolve => require(['@/views/Home/Home.vue'], resolve),
+    redirect: '/homePage',
+    children: [
+      {
+        path: '/homePage',
+        name: '首页',
+        component: resolve =>
+          require(['@/views/Home/HomePage.vue'], resolve)
+      },
+      {
+        path: '/interview2',
+        name: '面试题',
+        component: resolve =>
+          require(['@/components/interview/Interview2'], resolve)
+      },
+      {
+        path: '/table',
+        name: '数据表',
+        component: resolve => require(['@/components/table/Istable'], resolve)
+      },
+      {
+        path: '/VuexDemo',
+        name: 'VuexDemo',
+        component: resolve =>
+          require(['@/components/is_components/VuexDemo'], resolve)
+      }
+    ]
   },
   // {
   //   path: '/about',
@@ -75,11 +75,18 @@ const router = new VueRouter({
 
 // 在路由守卫中判断
 router.beforeEach((to, from, next) => {
+  progress.start()
   // 判断跳转的路由及 sessionStorage 中有无 token 如果没有则跳转到登录页面
-  if (to.path != '/login' && sessionStorage.getItem('authorization-token') === null) {
+  if (
+    to.path != '/login' &&
+    sessionStorage.getItem('authorization-token') === null
+  ) {
     return next('/login')
   }
   next()
+})
+router.afterEach((to, from, next) => {
+  progress.done()
 })
 
 export default router

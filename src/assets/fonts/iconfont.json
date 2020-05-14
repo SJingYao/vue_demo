@@ -1,0 +1,37 @@
+{
+  "id": "1817129",
+  "name": "self-vuedemo",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "6834342",
+      "name": "天气",
+      "font_class": "tianqi1",
+      "unicode": "e609",
+      "unicode_decimal": 58889
+    },
+    {
+      "icon_id": "1969464",
+      "name": "登出",
+      "font_class": "dengchu",
+      "unicode": "e620",
+      "unicode_decimal": 58912
+    },
+    {
+      "icon_id": "5571212",
+      "name": "地区",
+      "font_class": "icon-test",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "10937698",
+      "name": "日期",
+      "font_class": "date",
+      "unicode": "e62a",
+      "unicode_decimal": 58922
+    }
+  ]
+}
