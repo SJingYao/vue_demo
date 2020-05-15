@@ -1,7 +1,7 @@
 const path = require('path')
 const debug = process.env.NODE_ENV !== 'production'
-function resolve(dir){
-  return path.join(__dirname,dir)//path.join(__dirname)设置绝对路径
+function resolve(dir) {
+  return path.join(__dirname, dir) //path.join(__dirname)设置绝对路径
 }
 module.exports = {
   publicPath: '/', // 根域上下文目录

@@ -6,6 +6,11 @@
       default-active="/homePage"
       @open="handleOpen"
       @close="handleClose"
+      :collapse="$store.state.isCollapse"
+      background-color="#545c64"
+      text-color="#fff"
+      active-text-color="#ffd04b"
+      active-background-color="#434a50"
     >
       <el-menu-item index="/homePage">
         <i class="el-icon-s-home"></i>
@@ -35,14 +40,17 @@ export default {
   },
   methods: {
     handleOpen(key, keyPath) {
-      console.log(key, keyPath)
+      // console.log(key, keyPath)
     },
     handleClose(key, keyPath) {
-      console.log(key, keyPath)
+      // console.log(key, keyPath)
     }
   }
 }
 </script>
 
 <style scoped>
+.el-menu{
+  border: none;
+}
 </style>

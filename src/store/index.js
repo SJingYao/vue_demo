@@ -5,15 +5,12 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    count: 0
+    isCollapse: false
   },
   mutations: {
-    increment(state){
-      state.count++
+    switchSideBar(state){
+      state.isCollapse = !state.isCollapse
     },
-    subtract(state){
-      state.count--
-    }
   },
   actions: {},
   modules: {}

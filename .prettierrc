@@ -4,5 +4,6 @@
   "semi": false,
   "singleQuote": true,
   "arrowParens": "avoid",
-  "prettier.bracketSpacing": true
+  "prettier.bracketSpacing": true,
+  "printWidth": 180
 }

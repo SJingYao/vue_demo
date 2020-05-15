@@ -14,6 +14,10 @@ module.exports = [
       {
         path: '/VuexDemo',
         name: 'VuexDemo'
+      },
+      {
+        path: '/video',
+        name: '音视频'
       }
     ]
   },

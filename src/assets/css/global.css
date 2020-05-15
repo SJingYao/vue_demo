@@ -32,3 +32,11 @@ body {
   height: 100%;
   box-sizing: border-box;
 }
+/* 隐藏百度地图logo和文字 */
+.anchorBL {
+  display: none !important;
+}
+.BMap_cpyCtrl {
+  display: none !important;
+}
+/* 隐藏百度地图logo和文字 */

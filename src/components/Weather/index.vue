@@ -46,7 +46,6 @@ export default {
       getWeather({ appkey: this.appkey, city: '北京' }).then(response => {
         let { result } = response
         this.cityInfo = result
-        console.log(this.cityInfo)
       })
     }
   }
@@ -58,6 +57,7 @@ export default {
   display: flex;
   flex-flow: column;
   line-height: normal;
+  text-align: center;
   user-select: none;
   i {
     padding: 10px;
