@@ -14,6 +14,8 @@
         >
           <el-button type="primary" slot="append" icon="el-icon-search" @click="searchArea()"></el-button>
         </el-input>
+        <el-button @click="downloadImage()">下载文件</el-button>
+        <img :src="imgSrc" alt />
       </el-col>
     </el-row>
     <!-- </div> -->
@@ -38,6 +40,26 @@ export default {
     this.createMap()
   },
   methods: {
+    async downloadImage() {
+      let resdata = await getFileImg()
+      console.log(resdata)
+      let fileName = resdata.headers['content-disposition']
+      fileName = fileName.slice(fileName.indexOf('=') + 1)
+      console.log(fileName)
+      let files = new FileReader()
+      files.readAsDataURL(resdata.data)
+      files.onload = e => {
+        // console.log(e.target)
+        // this.imgSrc = e.target.result
+
+        let a = document.createElement('a')
+        a.href = e.target.result
+        a.setAttribute('download', fileName)
+        document.body.appendChild(a)
+        a.click()
+        document.body.removeChild(a)
+      }
+    },
     createMap() {
       // 创建地图实例
       var map = new BMap.Map('containers')

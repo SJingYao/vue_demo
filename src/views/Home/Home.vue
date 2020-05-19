@@ -3,11 +3,12 @@
     <div>
       <img alt="Vue logo" src="../assets/logo.png" />
   </div>-->
-  <el-container>
-    <el-aside :width="$store.state.isCollapse ? '64px' : '200px'">
+  <!-- class="animate__animated animate__zoomIn" -->
+  <el-container class="animate__animated animate__fadeInDown">
+    <el-aside :width="isCollapse ? '64px' : '200px'">
       <!-- <div class="logo">
         <img alt="Vue logo" src="../../assets/img/logo1.jpg" />
-      </div> -->
+      </div>-->
       <sidebar />
     </el-aside>
     <el-container>
@@ -17,8 +18,8 @@
             <div class="grid-content header-text">
               <div class="switch-sidebar">
                 <i
-                  :class="[$store.state.isCollapse ? 'el-icon-s-unfold' : 'el-icon-s-fold']"
-                  @click="$store.commit('switchSideBar')"
+                  :class="[isCollapse ? 'el-icon-s-unfold' : 'el-icon-s-fold']"
+                  @click="switchSideBar"
                 ></i>
               </div>
               <h2>Welcome to Vue Instance</h2>
@@ -49,6 +50,7 @@
 import sidebar from '@/components/sidebar/Sidebar'
 import weather from '@/components/Weather'
 import logout from '@/views/Login/Logout'
+import { mapState, mapMutations } from 'vuex'
 export default {
   name: 'Home',
   components: {
@@ -56,12 +58,17 @@ export default {
     weather,
     logout
   },
+  computed: {
+    ...mapState(['isCollapse'])
+  },
   data() {
     return {}
   },
   created() {},
   mounted() {},
-  methods: {},
+  methods: {
+    ...mapMutations(['switchSideBar'])
+  },
   created() {}
 }
 </script>

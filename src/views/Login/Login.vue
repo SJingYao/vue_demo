@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-card id="loginPage">
+    <el-card id="loginPage" class="animate__animated animate__backInDown">
       <div class="login-logo">
         <h2>Login</h2>
         <!-- <img src="./assets/img/loginLogo.png" alt="" /> -->

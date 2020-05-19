@@ -30,7 +30,8 @@ export default {
   }
 }
 .logout:hover {
-  animation: identifier 0.6s linear;
+  animation: identifier 1s linear;
+  // infinite
 }
 @keyframes identifier {
   0% {
